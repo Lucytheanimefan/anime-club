@@ -8,11 +8,14 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: false,
     trim: true,
+    unique: true,
   },
   username: {
     type: String,
     required: true,
-  }
+    unique: true,
+    trim: true,
+  },
   mal_username: {
     type: String,
     required: false,
@@ -50,6 +53,22 @@ UserSchema.pre('save', function(next) {
     return next(null, user);
   }
 });
+
+UserSchema.statics.authenticate = function(email, password, callback) {
+  User.findOne({ email: email })
+    .exec(function(err, user) {
+      if (err) {
+        return callback(err)
+      } else if (!user) {
+        let err = new Error('User not found.');
+        err.status = 401;
+        return callback(err);
+      }
+      bcrypt.compare(password, user.password, function(err, result) {
+        return callback(err, user);
+      })
+    });
+}
 
 var User = mongoose.model('User', UserSchema);
 module.exports = User;
