@@ -14,6 +14,9 @@ router.post('/login', function(req, res, next) {
     if (err) {
       return next(err);
     }
+    req.session.userId = user._id;
+    req.session.username = user.username;
+    req.session.email = user.email;
     return res.redirect('/');
   })
 });
@@ -27,7 +30,9 @@ router.post('/create', function(req, res, next) {
     if (err) {
       return next(err);
     }
-    console.log(user);
+    req.session.userId = user._id;
+    req.session.username = user.username;
+    req.session.email = user.email;
     return res.redirect('/');
   });
 });

@@ -1,6 +1,5 @@
 var User = require('../models/user');
 
-
-module.exports.new = function(userData, callback) {
-  User.create(userData, callback);
+module.exports.all = function(){
+	return User.find({}).exec();
 }
