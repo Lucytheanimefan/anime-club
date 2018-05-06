@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1= title
+  if anime
+    for show in anime
+      p #{show['anime_title']}
