@@ -14,7 +14,7 @@ var favorites = require('./routes/favorites');
 
 var app = express();
 
-mongoose.connect('mongodb://127.0.0.1:27017', { useMongoClient: true });
+mongoose.connect('mongodb://heroku_00f5wdrd:k9q5g5udlvma12i4tb16tfrk7m@ds213239.mlab.com:13239/heroku_00f5wdrd', { useMongoClient: true });
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
