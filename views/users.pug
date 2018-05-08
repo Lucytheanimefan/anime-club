@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  .row
+    table
+      thead
+        th Username
+        th Email
+        th MAL username
+      tbody
+      for user in users
+        tr
+          td= user.username
+          td= user.email
+          td
+            a(href='https://myanimelist.net/profile/' + user.mal_username)= user.mal_username
+

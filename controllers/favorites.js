@@ -25,7 +25,7 @@ module.exports.topanime = async function(callback) {
         let score = anime['score'];
         if (score >= 8) {
           const findAnimeQuery = animes.find_by_mal_id(mal_id);
-          var updateAnimeQuery;
+          let updateAnimeQuery;
           findAnimeQuery.then(function(anime) {
             if (anime && anime.users != null && !anime.users.includes(users[i].mal_username) ) {
             	console.log(anime.users);
